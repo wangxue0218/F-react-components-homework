@@ -10,6 +10,7 @@ class ChatInput extends Component {
   }
 
   handleSendMessage = (event) => {
+    if (!this.state.inputValue) return;
     this.props.onUserSendMessage(this.state.inputValue);
     this.setState({ inputValue: '' });
     event.preventDefault();

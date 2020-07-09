@@ -37,7 +37,7 @@ class Chat extends Component {
       answer.tags.some((tag) => userInputText.includes(tag))
     );
     this.setState((preState) => {
-      return { messages: [...preState, userInputMessage, ...robotMessages] };
+      return { messages: [...preState.messages, userInputMessage, ...robotMessages] };
     });
   };
 
