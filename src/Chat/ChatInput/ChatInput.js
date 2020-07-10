@@ -9,11 +9,16 @@ class ChatInput extends Component {
     };
   }
 
-  handleSendMessage = (event) => {
+  handleSendMessage = () => {
     if (!this.state.inputValue) return;
     this.props.onUserSendMessage(this.state.inputValue);
     this.setState({ inputValue: '' });
-    event.preventDefault();
+  };
+
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      this.handleSendMessage();
+    }
   };
 
   handleInputChange = (event) => {
@@ -23,7 +28,12 @@ class ChatInput extends Component {
   render() {
     return (
       <footer className="ChatInput">
-        <input type="text" value={this.state.inputValue} onChange={this.handleInputChange} />
+        <input
+          type="text"
+          value={this.state.inputValue}
+          onChange={this.handleInputChange}
+          onKeyPress={this.handleKeyPress}
+        />
         <button type="button" onClick={this.handleSendMessage}>
           Send
         </button>
